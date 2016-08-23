@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox fx:id="titleBarHB" prefHeight="20.0" prefWidth="800.0" styleClass="panel-background-color" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox fx:id="titleBarIconHB" prefHeight="100.0" prefWidth="120.0" />
+      <HBox fx:id="titleBarTitleHB" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="panel-background-color" HBox.hgrow="ALWAYS">
+         <children>
+            <Label fx:id="titleBarTitleText" alignment="CENTER" text="Label" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox fx:id="titleBarButtonsHB" prefHeight="100.0" prefWidth="100.0" styleClass="title-bar-buttons-container">
+         <children>
+            <Label id="min-button" minWidth="40.0" onMouseClicked="#MininimizeApp" prefHeight="19.0" />
+            <Label id="resmax-button" minWidth="40.0" onMouseClicked="#MaxResApp" prefHeight="19.0" />
+            <Label id="exit-button" minWidth="40.0" onMouseClicked="#CloseApp" prefHeight="19.0" />
+         </children>
+      </HBox>
+   </children>
+</HBox>

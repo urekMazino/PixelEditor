@@ -1,0 +1,426 @@
+* {
+   -fx-base1: #2b2b2b;  /*panel background*/
+   -fx-base2: #1a1a1a;  /*behind panel */
+   -fx-base3: #666666;  /*highlight panel background*/
+   -fx-base4: #009966;  /*panel text color*/
+   -fx-base5: #33cc99;  /*panel text color highlighted*/
+   -fx-base6: #2b2b2b;  /*red*/
+   -fx-base7: #C74955;  /*red highlight*/
+   -fx-base8: white;
+}
+
+/*BASIC PANEL*/
+.panel-background-color{
+	-fx-background-color:-fx-base1;
+}
+.behind-panel-background-color{
+	-fx-background-color:-fx-base2;
+}
+.panel-background-color .label{
+	-fx-text-fill:-fx-base4;
+}
+.border-pane{
+  -fx-border:20px;
+}
+
+/*CORNER BUTTONS*/
+#exit-button{
+  -fx-graphic:url("../resources/x.png");
+}
+#exit-button:hover{
+	-fx-background-color:-fx-base7;
+}
+#resmax-button{
+  -fx-graphic:url("../resources/max.png");
+  
+}
+#resmax-button:hover{
+  -fx-background-color:-fx-base3;
+}
+#min-button{
+  -fx-graphic:url("../resources/_.png");
+}
+#min-button:hover{
+  -fx-background-color:-fx-base3;
+}
+
+/*MENU BAR*/
+#menu-top-panel-vbox{
+  -fx-border-width: 2px 2px 0px 2px;
+  -fx-border-color:-fx-base2;
+}
+.menu-bar{
+	-fx-selection-bar: transparent;
+  -fx-padding:0px;
+
+}
+.menu-button:hover{
+	-fx-background-color:-fx-base3;
+
+}
+.menu-button .label{
+	-fx-text-fill:-fx-base4;
+  -fx-font-weight:bold;
+}
+.menu-bar .menu-item .label{
+  -fx-text-fill:-fx-base2;
+  -fx-font-weight:normal;
+}
+.menu-bar .menu-item {
+    -fx-background-color: -fx-base4;
+    -fx-padding:7px;
+    -fx-margin:10px;
+}
+.menu-bar .menu-item:focused {
+    -fx-background-color: -fx-base5;
+}
+.context-menu {
+    -fx-background-color: transparent;
+    -fx-padding:0px	;
+}
+
+
+/*******************************************************************************
+ *                                                                             *
+ * DockPane                                                                    *
+ *                                                                             *
+ ******************************************************************************/
+
+.dock-area-indicator {
+  -fx-fill: -fx-selection-bar;
+  -fx-opacity: 0.5;
+  -fx-stroke: rgba(50, 50, 100, 0.4);
+  -fx-stroke-width: 6;
+  -fx-stroke-type: inside;
+  -fx-stroke-dash-array: 8 4;
+  -fx-stroke-line-cap: butt;
+}
+
+.dock-pos-indicator {
+  -fx-padding: 10;
+  -fx-hgap: 30;
+  -fx-vgap: 30;
+  -fx-shape: "M0,10 a10,10 0 1,0 20,0 a10,10 0 1,0 -20,0";
+  -fx-background-color: rgba(50, 50, 100, 0.4);
+  -fx-border-width: 50;
+  -fx-border-color: rgba(50, 50, 100, 0.2);
+}
+
+/* JavaFX developers really seem to have fat fingers? */
+.dock-pos-indicator .button {
+  -fx-padding: 4;
+}
+/* This stops the stack pane containing the aligned
+ * root dock position indicators from offsetting
+ * them when one of them is set to the hover style.
+ * It gives them just enough room to breathe from the border.
+ */
+.dock-root-pane {
+  -fx-padding: 5;
+}
+.dock-pane{
+  -fx-background-color:red;
+  -fx-border-color:-fx-base2;
+}
+
+/* JavaFX developers really seem to have fat fingers? */
+.dock-root-pane .button {
+  -fx-padding: 4;
+}
+
+/* Set the icons for the indicator buttons here. */
+.dock-center {
+  -fx-graphic: url("../resources/center.png");
+
+}
+
+.dock-top {
+  -fx-graphic: url("../resources/top.png");
+}
+
+.dock-right {
+  -fx-graphic: url("../resources/right.png");
+}
+
+.dock-bottom {
+  -fx-graphic: url("../resources/bottom.png");
+}
+
+.dock-left {
+  -fx-graphic: url("../resources/left.png");
+}
+
+.dock-top-root {
+  -fx-graphic: url("../resources/top.png");
+}
+
+.dock-right-root {
+  -fx-graphic: url("../resources/right.png");
+}
+
+.dock-bottom-root {
+  -fx-graphic: url("../resources/bottom.png");
+}
+
+.dock-left-root {
+  -fx-graphic: url("../resources/left.png");
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * DockNode                                                                    *
+ *                                                                             *
+ ******************************************************************************/
+
+.dock-node-border {
+  -fx-padding: 10;
+  -fx-background-color: transparent;
+  -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.4), 10,0.2,0,0 );
+}
+
+.dock-node-border:maximized {
+  -fx-padding: 0;
+}
+
+/* It is necessary that dock node's have a background color
+ * because some panes used as content such as TabPane with empty
+ * tabs will be fully transparent.
+ */
+.dock-node{
+  -fx-background-color: -fx-base1;
+  -fx-border-width:0;
+  -fx-border-color:transparent;
+}
+
+.dock-title-bar {
+  -fx-background-color: -fx-base1;
+  -fx-spacing: 3;
+  -fx-border-width: 0 0 0 0;
+}
+
+.dock-title-label {
+  -fx-padding: 0 6 0 6;
+  -fx-background-color:transparent;
+  -fx-text-fill: -fx-base4;
+}
+
+/* We want small buttons for our dock's title bar
+ * but we have to make sure that the top and bottom
+ * are a good ratio of the left and right padding.
+ * If not we get extra padding on the bottom when the
+ * button is hovered, some factor of the default style's
+ * excessively wide buttons.
+ */
+.dock-title-bar .button {
+  -fx-padding: 0 4 0 4;
+  -fx-border:0px;
+  -fx-background-color:transparent;
+}
+
+/* Set the icons for the dock title bar's buttons here. */
+
+.dock-state-button {
+  -fx-font-family:'untitled-font-1';
+  -fx-font-size:16px;
+  -fx-text-fill:-fx-base4;
+}
+
+.dock-state-button:hover{
+  -fx-text-fill:-fx-base5;
+}
+
+.dock-close-button {
+  -fx-font-family:'untitled-font-1';
+  -fx-font-size:16px;
+  -fx-text-fill:-fx-base4;
+}
+.dock-close-button:hover{
+  -fx-text-fill:-fx-base5;
+}
+
+/*SPLIT PANE*/
+
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+}
+.split-pane:horizontal > .split-pane-divider {
+   -fx-background-color: -fx-base2;
+}
+.split-pane:vertical > .split-pane-divider {
+   -fx-background-color: -fx-base2;
+}
+.split-pane{
+  -fx-background-color:-fx-base2;
+  -fx-border-color:-fx-base2;
+  -fx-border-width:0px;
+}
+
+/*TOOLBAR*/
+.toolbar{
+  -fx-padding:10 0 0 0 ;
+}
+.toolbar .label{
+  -fx-font-family:'untitled-font-1';
+  -fx-font-size:22px;
+  -fx-text-fill:-fx-base4;
+}
+.toolbar .label:hover{
+  -fx-font-size:30px;
+  -fx-text-fill:-fx-base5;
+}
+
+.toolbar .color-sample-container{
+  -fx-background-color:white;
+  -fx-border-width:1px;
+  -fx-border-color:-fx-base2;
+}
+
+/*TAB PANE*/
+.tab-pane{
+  -fx-tab-min-width:120px;
+  -fx-tab-max-width:120px;
+  -fx-background-color:-fx-base2;
+}
+.tab-header-background{
+  -fx-background-color:transparent;
+}
+.tab-header-area{
+    -fx-padding:0px;
+}
+.tab{
+
+  -fx-background-color:-fx-base1;
+  -fx-background-radius:2px;
+  -fx-padding:0 10;
+}
+.tab:selected{
+  -fx-background-color:-fx-base2;
+}
+.tab:selected .focus-indicator{
+  -fx-border-radius: 0;
+  -fx-border-insets: 0;
+  -fx-border:0;
+  -fx-border-color:transparent;
+}
+.tab-label{
+  -fx-text-fill:-fx-base4;
+}
+.tab-close-button{
+  -fx-background-image: url("../resources/close.png");
+  -fx-background-color:transparent;
+  -fx-background-position:center;
+  -fx-background-repeat:no-repeat;
+  -fx-shape:null;
+}
+.tab-close-button:hover{
+  -fx-background-image: url("../resources/closeLight.png");
+}
+
+
+/* CUSTOM COLOR PICKER*/
+
+.context-menu-color-picker{
+    -fx-background-color:-fx-base6;
+    -fx-background-radius:5;
+    -fx-border-style: solid inside;
+    -fx-border-width: 1;
+    -fx-border-radius: 5; 
+    -fx-border-color: -fx-base4;
+    -fx-max-width:17em;
+    -fx-effect: null;
+}
+.context-menu-color-picker .menu-item{
+    -fx-padding:1em;
+    -fx-margin:1em;
+}
+.context-menu-color-picker .vbox{
+    -fx-padding:0px;
+}
+.menu-item:focused {
+    -fx-background-color: transparent;
+}
+
+.my-custom-color {
+    -fx-background-color: -fx-base6;
+    -fx-max-width:15em;
+    -fx-min-width:15em;
+}
+.my-custom-color  .label{
+    -fx-text-fill:-fx-base8;
+}
+.my-custom-color:hover  .label{
+    -fx-text-fill:-fx-base8;
+}
+
+.my-custom-color:focused,
+.my-custom-color:selected {
+    -fx-background-color: transparent;
+}
+
+.my-custom-color > .color-rect-pane {
+    -fx-spacing: 1em;
+    -fx-alignment: top-left;
+    -fx-fill-height: true;
+}
+
+.my-custom-color .color-rect-pane .color-rect {
+    -fx-min-width: 15em;
+    -fx-min-height: 15em;
+}
+.my-custom-color > .color-rect-pane #color-rect-indicator {
+    -fx-background-color: null;
+    -fx-border-color: white;
+    -fx-border-radius: 0.4166667em;
+    -fx-translate-x: -0.4166667em;
+    -fx-translate-y: -0.4166667em;
+    -fx-pref-width: 0.833333em;
+    -fx-pref-height: 0.833333em;
+    -fx-effect: dropshadow(three-pass-box, black, 2, 0.0, 0, 1);
+}
+
+.my-custom-color > .color-rect-pane > .color-bar {
+    -fx-min-height: 2em;
+    -fx-min-width:  15em;
+    -fx-max-width:  15em;
+    -fx-max-height: 2em;
+}
+/*
+.my-custom-color .transparent-pattern {
+    -fx-background-image: url("pattern-transparent.png"); 
+    -fx-background-repeat: repeat;
+    -fx-background-size: auto;
+}*/
+
+.my-custom-color .color-new-rect {
+    -fx-min-width: 7.5em;
+    -fx-min-height: 2em;
+    -fx-pref-height:  2.5em;
+    -fx-padding:0 0 5 0;
+}
+.my-custom-color .color-new-rect .label{
+    -fx-font:1.8em Tahoma;
+    -fx-text-fill:-fx-base4;
+    -fx-padding: 6 0 0 5 ;
+}
+.my-custom-color .color-new-rect .label .text{
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+
+}
+.my-custom-color .color-properties .text-field{
+    -fx-background-color:-fx-base1;
+    -fx-border-radius:3px;
+    -fx-border-width:1px;
+    -fx-border-color:-fx-base4;
+    -fx-text-fill:-fx-base4;
+    -fx-padding:3px;
+}
+.my-custom-color .color-properties .text-field:focused{
+     -fx-text-fill:-fx-base5;
+    -fx-border-color:-fx-base5;
+}
+.my-custom-color .color-properties .label{
+    -fx-text-fill:-fx-base4;
+    -fx-min-width:2em;
+    -fx-font-size:1.5em;
+}
