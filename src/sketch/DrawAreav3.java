@@ -238,8 +238,9 @@ public class DrawAreav3 extends JPanel{
 	    paintAlphaBackground((Graphics2D)g);
 	    g.drawImage(image, paddingx-vp.x, paddingy-vp.y,currentWidth,currentHeight, null);
 	   
+	    paintGrid(g,10,10,Color.BLACK);
 	    paintPixelGrid(g);
-	    
+
 	    lastWidth = currentWidth;
 	    lastHeight = currentHeight;
 	    
@@ -252,32 +253,29 @@ public class DrawAreav3 extends JPanel{
 		  g.fillRect(paddingx-vp.x, paddingy-vp.y,currentWidth,currentHeight);
 
 	  }
+	  public void paintGrid(Graphics g,int w, int h,Color c){
+		double pixelGap = zoom;
+		double wIncrements = w*pixelGap;
+		double hIncrements = h*pixelGap;
+		int beginningx = (int)(paddingx-vp.x<0?(-pixelGap+((paddingx-vp.x)%wIncrements)):paddingx-vp.x);
+		int beginningy = (int)(paddingy-vp.y<0?(-pixelGap+((paddingy-vp.y)%hIncrements)):paddingy-vp.y);
+		int endingx  =(int)Math.min(paddingx+currentWidth-vp.x,vp.x+vp.getWidth()+pixelGap);
+		int endingy = (int)Math.min(paddingy+currentHeight-vp.y,vp.y+vp.getHeight()+pixelGap);
 
+		
+		g.setColor(c);
+		
+		for(int i=beginningx;i<endingx;i+=wIncrements){ 
+			g.drawLine(i,beginningy, i, endingy);
+		}
+		for(int j=beginningy;j<endingy;j+=hIncrements){ 
+			g.drawLine(beginningx, j, endingx, j);
+		}
+	  }
 	 public void paintPixelGrid(Graphics g){
-		 if (zoom<12){
-			 return;
+		 if (zoom>=14){
+			 paintGrid(g,1,1,new Color(255,255,255,100));
 		 }
-		 //BufferedImage grid = new BufferedImage(currentWidth,currentHeight,BufferedImage.TYPE_INT_ARGB);
-		 //Graphics2D gridG2 = (Graphics2D) grid.getGraphics();
-		 
-		 
-		 int pixelGap = (int)zoom;
-		 int beginx = 
-		 int endingx  =paddingx+currentWidth-vp.x;
-		 int endingy = paddingy+currentHeight-vp.y;
-		 
-		 //gridG2.setColor(new Color(255,0,255,100));
-		 g.setColor(Color.WHITE);
-		 
-		 for(int i=1;i<originalWidth;i++){ 
-			 int currentx = paddingx-vp.x+(pixelGap*i);
-			 g.drawLine(currentx,paddingy-vp.y, currentx, endingy);
-		 }
-		 for(int j=1;j<originalHeight;j++){ 
-			 int currenty = paddingy-vp.y+(pixelGap*j);
-			 g.drawLine(paddingx-vp.x, currenty, endingx, currenty);
-		 }
-		 //g.drawImage(grid, paddingx, paddingy,currentWidth,currentHeight, null);
 	 }
 	  // now we create exposed methods
 	  public void clear() {
